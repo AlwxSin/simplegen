@@ -3,8 +3,9 @@ package simplegen
 import (
 	"errors"
 	"go/ast"
-	"golang.org/x/tools/go/packages"
 	"strings"
+
+	"golang.org/x/tools/go/packages"
 )
 
 const CmdKey = "simplegen"
@@ -21,10 +22,10 @@ type GeneratorName string
 
 // GeneratorFunc for generating template data from ast nodes.
 // SimpleGenerator calls it with:
-// sg -> SimpleGenerator instance (for useful methods, look into docs or examples to know how to use them)
-// pkg -> packages.Package where magic comment was found
-// node -> ast.TypeSpec struct with magic comment
-// comment -> ast.Comment magic comment itself
+// sg -> SimpleGenerator instance (for useful methods, look into docs or examples to know how to use them).
+// pkg -> packages.Package where magic comment was found.
+// node -> ast.TypeSpec struct annotated with magic comment.
+// comment -> ast.Comment magic comment itself.
 type GeneratorFunc func(
 	sg *SimpleGenerator,
 	pkg *packages.Package,
@@ -47,7 +48,7 @@ type TemplateGenerator struct {
 //	}
 type GeneratorsMap map[GeneratorName]TemplateGenerator
 
-// SpecData can be any struct. Will pass it to template
+// SpecData can be any struct. Will pass it to template.
 type SpecData any
 
 // cmdData internal struct. Will pass it to template.
@@ -72,7 +73,7 @@ func (gd *cmdData) add(sd SpecData) {
 
 // PackageNames is a helper for flag.Parse
 // Example:
-// flag.Var(&pn, "package", "Package where simplegen should find magic comments")
+// flag.Var(&pn, "package", "Package where simplegen should find magic comments").
 type PackageNames []string
 
 func (pn PackageNames) String() string {
