@@ -105,10 +105,11 @@ import (
 	"go/format"
 	"go/token"
 	"go/types"
-	"golang.org/x/tools/go/packages"
 	"html/template"
 	"os"
 	"strings"
+
+	"golang.org/x/tools/go/packages"
 )
 
 const packagesLoadMode = packages.NeedName |
@@ -294,7 +295,7 @@ func (sg *SimpleGenerator) GetPackage(path string) (*packages.Package, error) {
 }
 
 // GetObject tries to find type object in given package.
-// In most cases you don't need it, use GetStructType instead
+// In most cases you don't need it, use GetStructType instead.
 func (sg *SimpleGenerator) GetObject(pkg *packages.Package, typeName string) (types.Object, error) {
 	obj := pkg.Types.Scope().Lookup(typeName)
 	if obj == nil {
