@@ -1,6 +1,8 @@
 # simplegen
 Tool for simple use of ast-based code generation.
 
+[![Go Reference](https://pkg.go.dev/badge/github.com/AlwxSin/simplegen.svg)](https://pkg.go.dev/github.com/AlwxSin/simplegen)
+
 ### Problem
 In large codebase or in microservice architecture could be a bunch of codegen tools on many files. There often runs via `go:generate`.
 Which leads to slowdown of build process, because each call to `go:generate` means that tool should parse file (slow), build `ast.Tree` (slow), do some stuff with `ast` (usually fast) and write new file (slow).
@@ -105,6 +107,10 @@ func main() {
 }
 ```
 
+### Documentation
+
+See [godoc][godoc] for general API details.
+See [examples](examples) for more ways to use `simplegen`.
 
 ### Tools
 `simplegen` instance has several useful methods to work with `ast`. For example, we have the following struct
@@ -169,3 +175,6 @@ func MyCommandGenerator(
 	}
 }
 ```
+
+
+[godoc]: https://pkg.go.dev/github.com/AlwxSin/simplegen "Documentation on godoc"
