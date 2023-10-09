@@ -105,9 +105,9 @@ import (
 	"go/format"
 	"go/token"
 	"go/types"
-	"html/template"
 	"os"
 	"strings"
+	"text/template"
 
 	"golang.org/x/tools/go/packages"
 )
