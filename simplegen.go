@@ -152,12 +152,6 @@ func NewSimpleGenerator(pkgNames PackageNames, generators GeneratorsMap, tmplFun
 		tmplFuncMap: tmplFuncMap,
 	}
 	for _, pkg := range pkgs {
-		if len(pkg.Errors) > 0 {
-			for _, pkgErr := range pkg.Errors {
-				errors = append(errors, pkgErr)
-			}
-			continue
-		}
 		sg.pkgs[pkgPath(pkg.PkgPath)] = pkg
 	}
 
