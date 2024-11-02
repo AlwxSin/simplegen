@@ -106,6 +106,7 @@ import (
 	"go/token"
 	"go/types"
 	"os"
+	"path/filepath"
 	"strings"
 	"text/template"
 
@@ -116,7 +117,8 @@ const packagesLoadMode = packages.NeedName |
 	packages.NeedTypes |
 	packages.NeedSyntax |
 	packages.NeedTypesInfo |
-	packages.NeedImports
+	packages.NeedImports |
+	packages.NeedModule
 
 type SimpleGenerator struct {
 	// pkgs collects all used packages for easy use
@@ -256,10 +258,12 @@ func (sg *SimpleGenerator) write() error {
 				errors = append(errors, err)
 				continue
 			}
-			parts := strings.SplitN(pkg.PkgPath, "/", 2)
 
-			fName := fmt.Sprintf("/%s_gen.go", genName)
-			err = writeFile(parts[1]+fName, content)
+			pkgDir := filepath.Join(pkg.Module.Dir, strings.TrimPrefix(pkg.PkgPath, pkg.Module.Path))
+
+			fName := fmt.Sprintf("%s_gen.go", genName)
+
+			err = writeFile(filepath.Join(pkgDir, fName), content)
 			if err != nil {
 				errors = append(errors, err)
 			}
